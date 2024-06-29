@@ -8,10 +8,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockOnBoardingLocalDataSrc extends Mock
-    implements OnBoardingLocalDataSource {}
+    implements IOnBoardingLocalDataSource {}
 
 void main() {
-  late OnBoardingLocalDataSource localDataSource;
+  late IOnBoardingLocalDataSource localDataSource;
   late IOnBoardingRepository repoImpl;
 
   setUp(() {
