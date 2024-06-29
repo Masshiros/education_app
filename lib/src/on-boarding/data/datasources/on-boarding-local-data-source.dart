@@ -26,7 +26,7 @@ class OnBoardingLocalDataSource implements IOnBoardingLocalDataSource {
   @override
   Future<bool> checkIfUserIsFirstTimer() async {
     try {
-      return await _prefs.getBool(kFirstTimerKey) ?? true;
+      return _prefs.getBool(kFirstTimerKey) ?? true;
     } catch (e) {
       throw CacheException(message: e.toString());
     }
