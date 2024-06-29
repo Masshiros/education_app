@@ -15,4 +15,17 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
 
   final CacheFirstTimerUseCase _cacheFirstTimerUseCase;
   final CheckIfUserFirstTimerUseCase _checkIfUserFirstTimerUseCase;
+  Future<void> cacheFirstTimerUseCase() async {
+    emit(const CachingFirstTimer());
+    final result = await _cacheFirstTimerUseCase();
+    result.fold((l) => emit(OnBoardingError(l.errorMessage)),
+        (r) => emit(const UserCached()));
+  }
+
+  Future<void> checkIfUserFirstTimerUseCase() async {
+    emit(const CheckingIfUserIsFirstTimer());
+    final result = await _checkIfUserFirstTimerUseCase();
+    result.fold((l) => emit(const OnBoardingStatus(isFirstTimer: true)),
+        (status) => emit(OnBoardingStatus(isFirstTimer: status)));
+  }
 }
