@@ -1,11 +1,19 @@
 import 'package:education_app/core/common/views/page_under_construction.dart';
+import 'package:education_app/core/services/dependencies-container.dart';
+import 'package:education_app/src/on-boarding/presentation/cubit/cubit/on-boarding-cubit.dart';
 import 'package:education_app/src/on-boarding/presentation/views/on-boarding.screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
-    // case OnBoardingScreen.routeName:
-    //   return _pageBuilder(const OnBoardingScreen(), settings: settings);
+    case OnBoardingScreen.routeName:
+      return _pageBuilder(
+          BlocProvider(
+            create: (context) => getIt<OnBoardingCubit>(),
+            child: const OnBoardingScreen(),
+          ),
+          settings: settings);
     default:
       return _pageBuilder(const PageUnderConstruction(), settings: settings);
   }
