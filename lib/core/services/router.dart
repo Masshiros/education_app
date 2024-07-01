@@ -1,4 +1,4 @@
-import 'package:education_app/core/common/views/page_under_construction.dart';
+import 'package:education_app/core/common/views/page-under-construction.dart';
 import 'package:education_app/core/services/dependencies-container.dart';
 import 'package:education_app/src/on-boarding/presentation/cubit/cubit/on-boarding-cubit.dart';
 import 'package:education_app/src/on-boarding/presentation/views/on-boarding.screen.dart';

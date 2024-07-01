@@ -8,16 +8,37 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;
+
 Future<void> init() async {
   final prefs = await SharedPreferences.getInstance();
+
   getIt
-    ..registerFactory(() => OnBoardingCubit(
-        cacheFirstTimerUseCase: getIt(), checkIfUserFirstTimerUseCase: getIt))
-    ..registerLazySingleton(() => CacheFirstTimerUseCase(getIt()))
-    ..registerLazySingleton(() => CheckIfUserFirstTimerUseCase(getIt()))
-    ..registerLazySingleton<IOnBoardingRepository>(
-        () => OnBoardingRepository(getIt()))
+    // Register SharedPreferences
+    ..registerLazySingleton<SharedPreferences>(() => prefs)
+
+    // Register data sources
     ..registerLazySingleton<IOnBoardingLocalDataSource>(
-        () => OnBoardingLocalDataSource(getIt()))
-    ..registerLazySingleton(() => prefs);
+      () => OnBoardingLocalDataSource(getIt<SharedPreferences>()),
+    )
+
+    // Register repositories
+    ..registerLazySingleton<IOnBoardingRepository>(
+      () => OnBoardingRepository(getIt<IOnBoardingLocalDataSource>()),
+    )
+
+    // Register use cases
+    ..registerLazySingleton<CacheFirstTimerUseCase>(
+      () => CacheFirstTimerUseCase(getIt<IOnBoardingRepository>()),
+    )
+    ..registerLazySingleton<CheckIfUserFirstTimerUseCase>(
+      () => CheckIfUserFirstTimerUseCase(getIt<IOnBoardingRepository>()),
+    )
+
+    // Register Cubit
+    ..registerFactory<OnBoardingCubit>(
+      () => OnBoardingCubit(
+        cacheFirstTimerUseCase: getIt<CacheFirstTimerUseCase>(),
+        checkIfUserFirstTimerUseCase: getIt<CheckIfUserFirstTimerUseCase>(),
+      ),
+    );
 }
