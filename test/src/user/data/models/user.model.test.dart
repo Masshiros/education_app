@@ -1,4 +1,13 @@
 
+import 'dart:convert';
+
+import 'package:education_app/core/utils/typedefs.dart';
+import 'package:education_app/src/auth/data/models/user.model.dart';
+import 'package:education_app/src/auth/domain/entities/user.entities.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import '../../../../fixtures/fixtures.dart';
+
 void main() {
   const tLocalUserModel = LocalUserModel.empty();
 
