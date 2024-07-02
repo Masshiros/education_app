@@ -3,6 +3,7 @@ import 'package:education_app/core/utils/typedefs.dart';
 import 'package:education_app/src/auth/domain/entities/user.entities.dart';
 
 abstract interface class IAuthRepository {
+  const IAuthRepository();
   ResultFuture<LocalUser> signIn({
     required String email,
     required String password,
