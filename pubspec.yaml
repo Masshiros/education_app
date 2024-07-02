@@ -61,8 +61,6 @@ dependencies:
   firebase_ui_auth: ^1.7.0
   firebase_storage: ^11.7.7
   cloud_firestore: ^4.17.5
-  firebase_storage_mocks: ^0.6.1
-  fake_cloud_firestore: ^2.5.2
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +75,10 @@ dev_dependencies:
   bloc_test: ^9.1.7
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
+  firebase_storage_mocks: ^0.6.1
+  fake_cloud_firestore: ^2.5.2
+  firebase_auth_mocks: ^0.13.0
+  google_sign_in_mocks: ^0.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
