@@ -1,8 +1,7 @@
-
 import 'package:education_app/core/enums/update-user.enum.dart';
 import 'package:education_app/src/auth/data/models/user.model.dart';
 
-abstract class AuthDataSource {
+abstract interface class AuthDataSource {
   const AuthDataSource();
 
   Future<void> forgotPassword(String email);
