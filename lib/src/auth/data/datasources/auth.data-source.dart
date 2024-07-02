@@ -20,6 +20,6 @@ abstract class AuthDataSource {
 
   Future<void> updateUser({
     required EUpdateUserAction action,
-    dynamic userData,
+    required dynamic userData,
   });
 }
