@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({super.key});
-
+  static const routeName = '/dashboard';
   @override
   State<DashBoardScreen> createState() => _DashBoardScreenState();
 }
