@@ -7,7 +7,7 @@ import 'package:education_app/src/auth/domain/usecases/forgot-password.usecase.d
 import 'package:education_app/src/auth/domain/usecases/sign-in.usecase.dart';
 import 'package:education_app/src/auth/domain/usecases/sign-up.usecase.dart';
 import 'package:education_app/src/auth/domain/usecases/update-user.usecase.dart';
-import 'package:education_app/src/auth/presentation/bloc/bloc/auth-bloc.dart';
+import 'package:education_app/src/auth/presentation/bloc/auth-bloc.dart';
 import 'package:education_app/src/on-boarding/data/datasources/on-boarding-local-data-source.dart';
 import 'package:education_app/src/on-boarding/data/repositories/on-boarding.repository.dart';
 import 'package:education_app/src/on-boarding/domain/repositories/on-boarding.repository.dart';

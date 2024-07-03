@@ -9,17 +9,18 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
     case OnBoardingScreen.routeName:
       return _pageBuilder(
-          BlocProvider(
-            create: (context) => getIt<OnBoardingCubit>(),
-            child: const OnBoardingScreen(),
-          ),
+          (_) => BlocProvider(
+                create: (context) => getIt<OnBoardingCubit>(),
+                child: const OnBoardingScreen(),
+              ),
           settings: settings);
     default:
-      return _pageBuilder(const PageUnderConstruction(), settings: settings);
+      return _pageBuilder((_) => const PageUnderConstruction(),
+          settings: settings);
   }
 }
 
-PageRouteBuilder<dynamic> _pageBuilder(Widget page,
+PageRouteBuilder<dynamic> _pageBuilder(Widget Function(BuildContext) page,
     {required RouteSettings settings}) {
   return PageRouteBuilder(
     settings: settings,
@@ -28,6 +29,6 @@ PageRouteBuilder<dynamic> _pageBuilder(Widget page,
       opacity: animation,
       child: child,
     ),
-    pageBuilder: (context, _, __) => page,
+    pageBuilder: (context, _, __) => page(context),
   );
 }

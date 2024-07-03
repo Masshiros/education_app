@@ -6,7 +6,7 @@ import 'package:education_app/src/auth/domain/usecases/forgot-password.usecase.d
 import 'package:education_app/src/auth/domain/usecases/sign-in.usecase.dart';
 import 'package:education_app/src/auth/domain/usecases/sign-up.usecase.dart';
 import 'package:education_app/src/auth/domain/usecases/update-user.usecase.dart';
-import 'package:education_app/src/auth/presentation/bloc/bloc/auth-bloc.dart';
+import 'package:education_app/src/auth/presentation/bloc/auth-bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
