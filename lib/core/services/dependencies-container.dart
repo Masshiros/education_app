@@ -1,44 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:education_app/src/auth/data/datasources/auth.data-source.dart';
+import 'package:education_app/src/auth/data/datasources/auth.firebase.data-source.dart';
+import 'package:education_app/src/auth/data/repositories/auth.repo.dart';
+import 'package:education_app/src/auth/domain/repositories/auth.repo.dart';
+import 'package:education_app/src/auth/domain/usecases/forgot-password.usecase.dart';
+import 'package:education_app/src/auth/domain/usecases/sign-in.usecase.dart';
+import 'package:education_app/src/auth/domain/usecases/sign-up.usecase.dart';
+import 'package:education_app/src/auth/domain/usecases/update-user.usecase.dart';
+import 'package:education_app/src/auth/presentation/bloc/bloc/auth-bloc.dart';
 import 'package:education_app/src/on-boarding/data/datasources/on-boarding-local-data-source.dart';
 import 'package:education_app/src/on-boarding/data/repositories/on-boarding.repository.dart';
 import 'package:education_app/src/on-boarding/domain/repositories/on-boarding.repository.dart';
 import 'package:education_app/src/on-boarding/domain/usecases/cache-first-timer.usecase.dart';
 import 'package:education_app/src/on-boarding/domain/usecases/check-if-user-first-timer.usecase.dart';
 import 'package:education_app/src/on-boarding/presentation/cubit/cubit/on-boarding-cubit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final getIt = GetIt.instance;
-
-Future<void> init() async {
-  final prefs = await SharedPreferences.getInstance();
-
-  getIt
-    // Register SharedPreferences
-    ..registerLazySingleton<SharedPreferences>(() => prefs)
-
-    // Register data sources
-    ..registerLazySingleton<IOnBoardingLocalDataSource>(
-      () => OnBoardingLocalDataSource(getIt<SharedPreferences>()),
-    )
-
-    // Register repositories
-    ..registerLazySingleton<IOnBoardingRepository>(
-      () => OnBoardingRepository(getIt<IOnBoardingLocalDataSource>()),
-    )
-
-    // Register use cases
-    ..registerLazySingleton<CacheFirstTimerUseCase>(
-      () => CacheFirstTimerUseCase(getIt<IOnBoardingRepository>()),
-    )
-    ..registerLazySingleton<CheckIfUserFirstTimerUseCase>(
-      () => CheckIfUserFirstTimerUseCase(getIt<IOnBoardingRepository>()),
-    )
-
-    // Register Cubit
-    ..registerFactory<OnBoardingCubit>(
-      () => OnBoardingCubit(
-        cacheFirstTimerUseCase: getIt<CacheFirstTimerUseCase>(),
-        checkIfUserFirstTimerUseCase: getIt<CheckIfUserFirstTimerUseCase>(),
-      ),
-    );
-}
+part 'dependencies-container.main.dart';
