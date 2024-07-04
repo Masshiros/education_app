@@ -9,7 +9,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return _pageBuilder((context) {
         if (prefs.getBool(kFirstTimerKey) ?? true) {
           return BlocProvider(
-            create: (context) => getIt<OnBoardingCubit>(),
+            create: (_) => getIt<OnBoardingCubit>(),
             child: const OnBoardingScreen(),
           );
         } else if (currentUser != null) {
@@ -28,6 +28,27 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           child: const SignInScreen(),
         );
       }, settings: settings);
+    case SignInScreen.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (_) => getIt<AuthBloc>(),
+          child: const SignInScreen(),
+        ),
+        settings: settings,
+      );
+    case SignUpScreen.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (_) => getIt<AuthBloc>(),
+          child: const SignUpScreen(),
+        ),
+        settings: settings,
+      );
+    case DashBoardScreen.routeName:
+      return _pageBuilder(
+        (_) => const DashBoardScreen(),
+        settings: settings,
+      );
     case 'forgot-password':
       return _pageBuilder((_) => const fui.ForgotPasswordScreen(),
           settings: settings);

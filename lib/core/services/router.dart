@@ -4,6 +4,7 @@ import 'package:education_app/core/services/dependencies-container.dart';
 import 'package:education_app/src/auth/data/models/user.model.dart';
 import 'package:education_app/src/auth/presentation/bloc/auth-bloc.dart';
 import 'package:education_app/src/auth/presentation/views/sign-in.screen.dart';
+import 'package:education_app/src/auth/presentation/views/sign-up.screen.dart';
 import 'package:education_app/src/dashboard/presentation/views/dashboard.screen.dart';
 import 'package:education_app/src/on-boarding/data/datasources/on-boarding-local-data-source.dart';
 import 'package:education_app/src/on-boarding/presentation/cubit/cubit/on-boarding-cubit.dart';
