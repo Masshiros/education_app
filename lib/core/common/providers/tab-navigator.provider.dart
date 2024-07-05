@@ -66,6 +66,5 @@ class TabItem extends Equatable {
   final Widget child;
   final String id;
   @override
-  // TODO: implement props
   List<Object?> get props => [id];
 }
