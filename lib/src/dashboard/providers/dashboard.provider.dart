@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 class DashBoardProvider extends ChangeNotifier {
   List<int> _indexHistory = [0];
   int _currentIndex = 3;
+  int get currentIndex => _currentIndex;
   final List<Widget> _screens = [
     ChangeNotifierProvider(
       create: (_) => TabNavigator(
@@ -14,7 +15,31 @@ class DashBoardProvider extends ChangeNotifier {
         ),
       ),
       child: const PersistentView(),
-    )
+    ),
+    ChangeNotifierProvider(
+      create: (_) => TabNavigator(
+        TabItem(
+          child: const Placeholder(),
+        ),
+      ),
+      child: const PersistentView(),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => TabNavigator(
+        TabItem(
+          child: const Placeholder(),
+        ),
+      ),
+      child: const PersistentView(),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => TabNavigator(
+        TabItem(
+          child: const Placeholder(),
+        ),
+      ),
+      child: const PersistentView(),
+    ),
   ];
   List<Widget> get screens => _screens;
   void changeIndex(int index) {
