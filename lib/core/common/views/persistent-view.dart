@@ -10,10 +10,16 @@ class PersistentView extends StatefulWidget {
   State<PersistentView> createState() => _PersistentViewState();
 }
 
-class _PersistentViewState extends State<PersistentView> {
+class _PersistentViewState extends State<PersistentView>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
-        body: widget.body ?? context.read<TabNavigator>().currentPage.child);
+        body: widget.body ?? context.watch<TabNavigator>().currentPage.child);
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
