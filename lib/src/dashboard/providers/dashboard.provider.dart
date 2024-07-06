@@ -1,5 +1,6 @@
 import 'package:education_app/core/common/providers/tab-navigator.provider.dart';
 import 'package:education_app/core/common/views/persistent-view.dart';
+import 'package:education_app/src/profile/presentation/views/profile.view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +36,7 @@ class DashBoardProvider extends ChangeNotifier {
     ChangeNotifierProvider(
       create: (_) => TabNavigator(
         TabItem(
-          child: const Placeholder(),
+          child: const ProfileView(),
         ),
       ),
       child: const PersistentView(),
