@@ -1,3 +1,4 @@
+import 'package:education_app/core/common/providers/tab-navigator.provider.dart';
 import 'package:education_app/core/common/providers/user.provider.dart';
 import 'package:education_app/src/auth/domain/entities/user.entities.dart';
 import 'package:flutter/material.dart';
@@ -14,4 +15,7 @@ extension ContextExt on BuildContext {
 
   UserProvider get userProvider => read<UserProvider>();
   LocalUser? get currentUser => userProvider.user;
+  TabNavigator get tabNavigator => read<TabNavigator>();
+  void pop() => tabNavigator.pop();
+  void push(Widget page) => tabNavigator.push(TabItem(child: page));
 }
