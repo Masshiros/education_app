@@ -5,6 +5,7 @@ final getIt = GetIt.instance;
 Future<void> init() async {
   await _initOnBoarding();
   await _initAuth();
+  await _initCourse();
 }
 
 Future<void> _initOnBoarding() async {
@@ -72,4 +73,24 @@ Future<void> _initAuth() async {
         updateUserUseCase: getIt<UpdateUserUseCase>(),
       ),
     );
+}
+
+Future<void> _initCourse() async {
+  getIt
+    ..registerLazySingleton<CourseDataSource>(
+      () => CourseFirebaseDataSource(
+        authClient: getIt<FirebaseAuth>(),
+        cloudStoreClient: getIt<FirebaseFirestore>(),
+        dbClient: getIt<FirebaseStorage>(),
+      ),
+    )
+    ..registerLazySingleton<ICourseRepository>(
+        () => CourseRepository(getIt<CourseDataSource>()))
+    ..registerLazySingleton<AddCourseUseCase>(
+        () => AddCourseUseCase(getIt<ICourseRepository>()))
+    ..registerLazySingleton<GetCoursesUseCase>(
+        () => GetCoursesUseCase(getIt<ICourseRepository>()))
+    ..registerFactory<CourseCubit>(() => CourseCubit(
+        addCourse: getIt<AddCourseUseCase>(),
+        getCourses: getIt<GetCoursesUseCase>()));
 }
