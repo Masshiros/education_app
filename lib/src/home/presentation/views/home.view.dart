@@ -1,5 +1,7 @@
 import 'package:education_app/core/common/widgets/gradient-background.dart';
 import 'package:education_app/core/global/media.dart';
+import 'package:education_app/src/home/presentation/widgets/home-app-bar.widget.dart';
+import 'package:education_app/src/home/presentation/widgets/home-body.widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -12,8 +14,8 @@ class HomeView extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: HomeAppBar(),
       body: GradientBackground(
-        child: HomeBody(),
         image: MediaRes.homeGradientBackground,
+        child: HomeBody(),
       ),
     );
   }

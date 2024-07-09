@@ -1,3 +1,4 @@
+import 'package:education_app/core/common/providers/course-of-the-day.provider.dart';
 import 'package:education_app/core/common/providers/user.provider.dart';
 import 'package:education_app/core/global/colours.dart';
 import 'package:education_app/core/global/fonts.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => DashBoardProvider()),
+        ChangeNotifierProvider(create: (_) => CourseOfTheDayNotifier()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
