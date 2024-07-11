@@ -536,6 +536,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_tindercard:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "1a42eae9ce2da6c6ef35f6687cf16b68dd94acb4"
+      url: "https://github.com/NonymousMorlock/flutter_tindercard.git"
+    source: git
+    version: "0.0.1"
   flutter_web_plugins:
     dependency: transitive
     description: flutter

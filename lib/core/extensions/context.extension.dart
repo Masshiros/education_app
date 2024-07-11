@@ -1,6 +1,8 @@
+import 'package:education_app/core/common/providers/course-of-the-day.provider.dart';
 import 'package:education_app/core/common/providers/tab-navigator.provider.dart';
 import 'package:education_app/core/common/providers/user.provider.dart';
 import 'package:education_app/src/auth/domain/entities/user.entities.dart';
+import 'package:education_app/src/course/domain/entities/course.entities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,6 +18,7 @@ extension ContextExt on BuildContext {
   UserProvider get userProvider => read<UserProvider>();
   LocalUser? get currentUser => userProvider.user;
   TabNavigator get tabNavigator => read<TabNavigator>();
+  Course? get courseOfTheDay => read<CourseOfTheDayNotifier>().courseOfTheday;
   void pop() => tabNavigator.pop();
   void push(Widget page) => tabNavigator.push(TabItem(child: page));
 }

@@ -17,6 +17,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   flutter_bloc: ^8.1.3
+  flutter_tindercard:
+    git:
+      url: https://github.com/NonymousMorlock/flutter_tindercard.git
   equatable: ^2.0.5
   file_picker: ^5.3.3
   font_awesome_flutter: ^10.5.0
