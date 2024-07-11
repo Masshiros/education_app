@@ -28,6 +28,11 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           child: const SignInScreen(),
         );
       }, settings: settings);
+    case CourseDetailsScreen.routeName:
+      return _pageBuilder(
+        (_) => CourseDetailsScreen(course: settings.arguments as Course),
+        settings: settings,
+      );
     case SignInScreen.routeName:
       return _pageBuilder(
         (_) => BlocProvider(

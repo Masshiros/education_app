@@ -3,6 +3,7 @@ import 'package:education_app/core/common/widgets/gradient-background.dart';
 import 'package:education_app/core/common/widgets/nested-back-button.dart';
 import 'package:education_app/core/global/media.dart';
 import 'package:education_app/src/course/domain/entities/course.entities.dart';
+import 'package:education_app/src/course/presentation/views/course-details.view.dart';
 import 'package:flutter/material.dart';
 
 class AllCoursesView extends StatelessWidget {
@@ -50,7 +51,7 @@ class AllCoursesView extends StatelessWidget {
                             course: course,
                             onTap: () => Navigator.of(context).pushNamed(
                               //TODO(Course-details-screen): add route name here
-                              '/',
+                              CourseDetailsScreen.routeName,
                               arguments: course,
                             ),
                           ),

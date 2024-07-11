@@ -3,6 +3,7 @@ import 'package:education_app/core/extensions/context.extension.dart';
 import 'package:education_app/core/global/colours.dart';
 import 'package:education_app/src/course/domain/entities/course.entities.dart';
 import 'package:education_app/src/course/presentation/views/all-courses.view.dart';
+import 'package:education_app/src/course/presentation/views/course-details.view.dart';
 import 'package:education_app/src/home/presentation/widgets/section-header.widget.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,7 @@ class HomeSubjects extends StatelessWidget {
               .map((course) => CourseTile(
                     course: course,
                     onTap: () => Navigator.of(context).pushNamed(
-                      '/',
+                      CourseDetailsScreen.routeName,
                       arguments: course,
                     ),
                   ))
