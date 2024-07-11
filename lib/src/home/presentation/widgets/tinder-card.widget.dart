@@ -27,7 +27,7 @@ class TinderCard extends StatelessWidget {
           ),
         ],
       ),
-       child: isFirst
+      child: isFirst
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

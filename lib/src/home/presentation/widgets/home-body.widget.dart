@@ -4,6 +4,7 @@ import 'package:education_app/core/common/widgets/not-found-text.dart';
 import 'package:education_app/core/utils/core-utils.dart';
 import 'package:education_app/src/course/presentation/cubit/course-cubit.dart';
 import 'package:education_app/src/home/presentation/widgets/home-header.widget.dart';
+import 'package:education_app/src/home/presentation/widgets/home-subjects.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -56,7 +57,10 @@ class _HomeBodyState extends State<HomeBody> {
             );
           return ListView(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            children: const [HomeHeader()],
+            children: [
+              const HomeHeader(),
+              HomeSubjects(courses: courses),
+            ],
           );
         }
         return const SizedBox.shrink();
