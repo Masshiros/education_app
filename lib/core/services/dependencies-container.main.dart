@@ -6,6 +6,7 @@ Future<void> init() async {
   await _initOnBoarding();
   await _initAuth();
   await _initCourse();
+  await _initVideo();
 }
 
 Future<void> _initOnBoarding() async {
@@ -93,4 +94,24 @@ Future<void> _initCourse() async {
     ..registerFactory<CourseCubit>(() => CourseCubit(
         addCourse: getIt<AddCourseUseCase>(),
         getCourses: getIt<GetCoursesUseCase>()));
+}
+
+Future<void> _initVideo() async {
+  getIt
+    ..registerLazySingleton<VideoDataSource>(
+      () => VideoFirebaseDataSource(
+        auth: getIt<FirebaseAuth>(),
+        firestore: getIt<FirebaseFirestore>(),
+        storage: getIt<FirebaseStorage>(),
+      ),
+    )
+    ..registerLazySingleton<IVideoRepository>(
+        () => VideoRepository(getIt<VideoDataSource>()))
+    ..registerLazySingleton<AddVideoUseCase>(
+        () => AddVideoUseCase(getIt<IVideoRepository>()))
+    ..registerLazySingleton<GetVideosUseCase>(
+        () => GetVideosUseCase(getIt<IVideoRepository>()))
+    ..registerFactory<VideoCubit>(() => VideoCubit(
+        addVideo: getIt<AddVideoUseCase>(),
+        getVideos: getIt<GetVideosUseCase>()));
 }
