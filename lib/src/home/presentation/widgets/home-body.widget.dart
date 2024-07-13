@@ -5,6 +5,7 @@ import 'package:education_app/core/utils/core-utils.dart';
 import 'package:education_app/src/course/presentation/cubit/course-cubit.dart';
 import 'package:education_app/src/home/presentation/widgets/home-header.widget.dart';
 import 'package:education_app/src/home/presentation/widgets/home-subjects.widget.dart';
+import 'package:education_app/src/home/presentation/widgets/home-videos.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -59,7 +60,10 @@ class _HomeBodyState extends State<HomeBody> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             children: [
               const HomeHeader(),
+              const SizedBox(height: 20),
               HomeSubjects(courses: courses),
+              const SizedBox(height: 20),
+              const HomeVideos(),
             ],
           );
         }

@@ -1,6 +1,7 @@
 import 'package:education_app/core/common/providers/tab-navigator.provider.dart';
 import 'package:education_app/core/common/views/persistent-view.dart';
 import 'package:education_app/core/services/dependencies-container.dart';
+import 'package:education_app/src/course/features/videos/presentation/cubit/video-cubit.dart';
 import 'package:education_app/src/course/presentation/cubit/course-cubit.dart';
 import 'package:education_app/src/home/presentation/views/home.view.dart';
 import 'package:education_app/src/profile/presentation/views/profile.view.dart';
@@ -16,8 +17,15 @@ class DashBoardProvider extends ChangeNotifier {
     ChangeNotifierProvider(
       create: (_) => TabNavigator(
         TabItem(
-          child: BlocProvider(
-            create: (context) => getIt<CourseCubit>(),
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => getIt<CourseCubit>(),
+              ),
+              BlocProvider(
+                create: (context) => getIt<VideoCubit>(),
+              ),
+            ],
             child: const HomeView(),
           ),
         ),
