@@ -5,6 +5,7 @@ import 'package:education_app/src/course/features/exams/domain/entities/exam.ent
 import 'package:education_app/src/course/features/exams/domain/entities/user-exam.entities.dart';
 
 abstract class ExamDataSource {
+  const ExamDataSource();
   Future<List<ExamModel>> getExams(String courseId);
 
   Future<void> uploadExam(Exam exam);
