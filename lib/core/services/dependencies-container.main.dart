@@ -8,6 +8,7 @@ Future<void> init() async {
   await _initCourse();
   await _initVideo();
   await _initResource();
+  await _initExam();
 }
 
 Future<void> _initOnBoarding() async {
@@ -135,4 +136,39 @@ Future<void> _initResource() async {
     ..registerFactory<ResourceCubit>(() => ResourceCubit(
         addResource: getIt<AddResourceUseCase>(),
         getResources: getIt<GetResourcesUseCase>()));
+}
+
+Future<void> _initExam() async {
+  getIt
+    ..registerLazySingleton<ExamDataSource>(
+      () => ExamFirebaseDataSource(
+        auth: getIt<FirebaseAuth>(),
+        firestore: getIt<FirebaseFirestore>(),
+      ),
+    )
+    ..registerLazySingleton<IExamRepository>(
+        () => ExamRepository(getIt<ExamDataSource>()))
+    ..registerLazySingleton<GetExamQuestionsUseCase>(
+        () => GetExamQuestionsUseCase(getIt<IExamRepository>()))
+    ..registerLazySingleton<GetExamsUseCase>(
+        () => GetExamsUseCase(getIt<IExamRepository>()))
+    ..registerLazySingleton<GetUserExamUseCase>(
+        () => GetUserExamUseCase(getIt<IExamRepository>()))
+    ..registerLazySingleton<GetUserCourseExamsUseCase>(
+        () => GetUserCourseExamsUseCase(getIt<IExamRepository>()))
+    ..registerLazySingleton<UploadExamUseCase>(
+        () => UploadExamUseCase(getIt<IExamRepository>()))
+    ..registerLazySingleton<UpdateExamUseCase>(
+        () => UpdateExamUseCase(getIt<IExamRepository>()))
+    ..registerLazySingleton<SubmitExamUseCase>(
+        () => SubmitExamUseCase(getIt<IExamRepository>()))
+    ..registerFactory<ExamCubit>(() => ExamCubit(
+          getExamQuestions: getIt<GetExamQuestionsUseCase>(),
+          getExams: getIt<GetExamsUseCase>(),
+          getUserExams: getIt<GetUserExamUseCase>(),
+          getUserCourseExams: getIt<GetUserCourseExamsUseCase>(),
+          uploadExam: getIt<UploadExamUseCase>(),
+          updateExam: getIt<UpdateExamUseCase>(),
+          submitExam: getIt<SubmitExamUseCase>(),
+        ));
 }
