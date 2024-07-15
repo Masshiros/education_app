@@ -9,6 +9,7 @@ Future<void> init() async {
   await _initVideo();
   await _initResource();
   await _initExam();
+  await _initNotification();
 }
 
 Future<void> _initOnBoarding() async {
@@ -170,5 +171,34 @@ Future<void> _initExam() async {
           uploadExam: getIt<UploadExamUseCase>(),
           updateExam: getIt<UpdateExamUseCase>(),
           submitExam: getIt<SubmitExamUseCase>(),
+        ));
+}
+
+Future<void> _initNotification() async {
+  getIt
+    ..registerLazySingleton<NotificationDataSource>(
+      () => NotificationFirebaseDataSource(
+        auth: getIt<FirebaseAuth>(),
+        firestore: getIt<FirebaseFirestore>(),
+      ),
+    )
+    ..registerLazySingleton<INotificationRepository>(
+        () => NotificationRepository(getIt<NotificationDataSource>()))
+    ..registerLazySingleton<GetNotificationsUseCase>(
+        () => GetNotificationsUseCase(getIt<INotificationRepository>()))
+    ..registerLazySingleton<SendNotificationUseCase>(
+        () => SendNotificationUseCase(getIt<INotificationRepository>()))
+    ..registerLazySingleton<MarkAsReadUseCase>(
+        () => MarkAsReadUseCase(getIt<INotificationRepository>()))
+    ..registerLazySingleton<ClearAllUseCase>(
+        () => ClearAllUseCase(getIt<INotificationRepository>()))
+    ..registerLazySingleton<ClearUseCase>(
+        () => ClearUseCase(getIt<INotificationRepository>()))
+    ..registerFactory<NotificationsCubit>(() => NotificationsCubit(
+          clear: getIt<ClearUseCase>(),
+          clearAll: getIt<ClearAllUseCase>(),
+          getNotifications: getIt<GetNotificationsUseCase>(),
+          markAsRead: getIt<MarkAsReadUseCase>(),
+          sendNotification: getIt<SendNotificationUseCase>(),
         ));
 }
