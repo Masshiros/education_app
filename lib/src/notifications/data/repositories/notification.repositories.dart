@@ -17,7 +17,7 @@ class NotificationRepository implements INotificationRepository {
   @override
   ResultFuture<void> clear(String notificationId) async {
     try {
-      await _dataSource.clear();
+      await _dataSource.clear(notificationId);
       return const Right(null);
     } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));

@@ -3,7 +3,7 @@ import 'package:education_app/src/notifications/domain/entities/notification.dar
 
 abstract interface class NotificationDataSource {
   const NotificationDataSource();
-  Future<void> clear();
+  Future<void> clear(String notificationId);
   Future<void> clearAll();
   Future<void> markAsRead(String notificationId);
   Future<void> sendNotification(Notification notification);
