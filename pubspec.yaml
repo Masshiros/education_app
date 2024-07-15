@@ -43,6 +43,8 @@ dependencies:
   firebase_storage: ^11.2.6
   firebase_ui_auth: ^1.6.3
   uuid: ^3.0.7
+  badges: ^3.1.2
+  audioplayers: ^5.1.0
 
 dev_dependencies:
   bloc_test: ^9.1.4
