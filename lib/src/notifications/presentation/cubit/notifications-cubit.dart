@@ -37,7 +37,6 @@ class NotificationsCubit extends Cubit<NotificationsState> {
     final result = await _clear(notificationId);
     result.fold(
       (failure) {
-        print(failure);
         emit(NotificationError(failure.errorMessage));
       },
       (_) {
@@ -85,7 +84,11 @@ class NotificationsCubit extends Cubit<NotificationsState> {
             emit(NotificationError(failure.errorMessage));
             subscription?.cancel();
           },
-          (notifications) => emit(NotificationsLoaded(notifications)),
+          (notifications) async {
+            await Future.delayed(const Duration(seconds: 1));
+            print('delayed');
+            emit(NotificationsLoaded(notifications));
+          },
         );
       },
       onError: (dynamic error) {

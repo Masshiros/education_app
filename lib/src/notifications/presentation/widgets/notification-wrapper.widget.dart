@@ -29,7 +29,7 @@ class _NotificationWrapperState extends State<NotificationWrapper> {
           Navigator.pop(context);
           showingLoader = false;
         }
-        if (state is NotificationSent || state is NotificationsCleared) {
+        if (state is NotificationSent) {
           print("NOTIFICATION SENT");
           widget.extraActivity?.call();
           widget.onNotificationSent();

@@ -35,6 +35,7 @@ class _NotificationsViewState extends State<NotificationsView> {
       ),
       body: BlocConsumer<NotificationsCubit, NotificationsState>(
         listener: (context, state) {
+           print(state);
           if (state is NotificationError) {
             CoreUtils.showSnackBar(context, state.message);
             context.pop();

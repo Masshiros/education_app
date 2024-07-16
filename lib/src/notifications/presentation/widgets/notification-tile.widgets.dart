@@ -17,9 +17,11 @@ class NotificationTile extends StatelessWidget {
     }
     return BlocListener<NotificationsCubit, NotificationsState>(
       listener: (context, state) {
+        print('noti 2: ${state}');
         if (state is ClearingNotifications) {
           CoreUtils.showLoadingDialog(context);
-        } else if (state is NotificationsCleared) {
+        }
+        if (state is NotificationsCleared) {
           print("cleared noti");
           Navigator.pop(context);
         }
