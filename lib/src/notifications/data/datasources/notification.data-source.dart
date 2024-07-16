@@ -1,4 +1,4 @@
-import 'package:education_app/src/notifications/data/models/notification,models.dart';
+import 'package:education_app/src/notifications/data/models/notification.models.dart';
 import 'package:education_app/src/notifications/domain/entities/notification.dart';
 
 abstract interface class NotificationDataSource {

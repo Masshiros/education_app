@@ -1,4 +1,5 @@
 import 'package:education_app/core/common/widgets/time-text.dart';
+import 'package:education_app/core/utils/core-utils.dart';
 import 'package:education_app/src/notifications/domain/entities/notification.dart';
 import 'package:education_app/src/notifications/presentation/cubit/notifications-cubit.dart';
 import 'package:flutter/material.dart' hide Notification;
@@ -14,29 +15,39 @@ class NotificationTile extends StatelessWidget {
     if (!notification.seen) {
       context.read<NotificationsCubit>().markAsRead(notification.id);
     }
-    return Dismissible(
-      key: Key(notification.id),
-      direction: DismissDirection.endToStart,
-      background: Container(
-        color: Colors.red,
-        alignment: Alignment.centerRight,
-        padding: const EdgeInsets.only(right: 16),
-        child: const Icon(Icons.delete, color: Colors.white),
-      ),
-      onDismissed: (_) {
-        context.read<NotificationsCubit>().clear(notification.id);
+    return BlocListener<NotificationsCubit, NotificationsState>(
+      listener: (context, state) {
+        if (state is ClearingNotifications) {
+          CoreUtils.showLoadingDialog(context);
+        } else if (state is NotificationsCleared) {
+          print("cleared noti");
+          Navigator.pop(context);
+        }
       },
-      child: ListTile(
-        leading: CircleAvatar(
-          radius: 24,
-          backgroundImage: AssetImage(notification.category.image),
-          backgroundColor: Colors.transparent,
+      child: Dismissible(
+        key: Key(notification.id),
+        direction: DismissDirection.endToStart,
+        background: Container(
+          color: Colors.red,
+          alignment: Alignment.centerRight,
+          padding: const EdgeInsets.only(right: 16),
+          child: const Icon(Icons.delete, color: Colors.white),
         ),
-        title: Text(
-          notification.title,
-          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+        onDismissed: (_) {
+          context.read<NotificationsCubit>().clear(notification.id);
+        },
+        child: ListTile(
+          leading: CircleAvatar(
+            radius: 24,
+            backgroundImage: AssetImage(notification.category.image),
+            backgroundColor: Colors.transparent,
+          ),
+          title: Text(
+            notification.title,
+            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+          ),
+          subtitle: TimeText(notification.sentAt),
         ),
-        subtitle: TimeText(notification.sentAt),
       ),
     );
   }

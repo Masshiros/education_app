@@ -50,7 +50,7 @@ class _TimeTextState extends State<TimeText> {
   @override
   Widget build(BuildContext context) {
     return Text(
-      '${widget.prefixText != null ? '${widget.prefixText}' : ''}$timeAgo',
+      '${widget.prefixText != null ? '${widget.prefixText}' : ''} $timeAgo',
       maxLines: widget.maxLines,
       overflow: widget.overflow,
       style: widget.style ??

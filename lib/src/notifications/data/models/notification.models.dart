@@ -23,7 +23,7 @@ class NotificationModel extends Notification {
           body: map['body'] as String,
           category: (map['category'] as String).toNotificationCategory,
           seen: map['seen'] as bool,
-          sentAt: (map['sentAt'] as Timestamp).toDate(),
+          sentAt: (map['sentAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
         );
 
   NotificationModel.empty()

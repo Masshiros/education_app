@@ -26,8 +26,8 @@ class DashBoardProvider extends ChangeNotifier {
               BlocProvider(
                 create: (context) => getIt<VideoCubit>(),
               ),
-               BlocProvider(
-                create: (context) => getIt<NotificationsCubit>(),
+              BlocProvider.value(
+                value: getIt<NotificationsCubit>(),
               ),
             ],
             child: const HomeView(),

@@ -57,6 +57,47 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case 'forgot-password':
       return _pageBuilder((_) => const fui.ForgotPasswordScreen(),
           settings: settings);
+    case AddVideoView.routeName:
+      return _pageBuilder(
+        (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => getIt<CourseCubit>()),
+            BlocProvider(create: (_) => getIt<VideoCubit>()),
+            BlocProvider(create: (_) => getIt<NotificationsCubit>()),
+          ],
+          child: const AddVideoView(),
+        ),
+        settings: settings,
+      );
+    case AddResourcesView.routeName:
+      return _pageBuilder(
+        (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => getIt<CourseCubit>()),
+            BlocProvider(create: (_) => getIt<ResourceCubit>()),
+            BlocProvider(create: (_) => getIt<NotificationsCubit>()),
+          ],
+          child: const AddResourcesView(),
+        ),
+        settings: settings,
+      );
+    case AddExamsView.routeName:
+      return _pageBuilder(
+        (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => getIt<CourseCubit>()),
+            BlocProvider(create: (_) => getIt<ExamCubit>()),
+            BlocProvider(create: (_) => getIt<NotificationsCubit>()),
+          ],
+          child: const AddExamsView(),
+        ),
+        settings: settings,
+      );
+    case VideoPlayerView.routeName:
+      return _pageBuilder(
+        (_) => VideoPlayerView(videoURL: settings.arguments! as String),
+        settings: settings,
+      );
     default:
       return _pageBuilder((_) => const PageUnderConstruction(),
           settings: settings);

@@ -3,8 +3,12 @@ import 'package:education_app/core/extensions/context.extension.dart';
 import 'package:education_app/core/global/colours.dart';
 import 'package:education_app/core/global/media.dart';
 import 'package:education_app/core/services/dependencies-container.dart';
+import 'package:education_app/src/course/features/exams/presentation/views/add-exams.view.dart';
+import 'package:education_app/src/course/features/resources/presentation/views/add-resources.view.dart';
+import 'package:education_app/src/course/features/videos/presentation/views/add-video.view.dart';
 import 'package:education_app/src/course/presentation/cubit/course-cubit.dart';
 import 'package:education_app/src/course/presentation/widgets/add-course-sheet.widget.dart';
+import 'package:education_app/src/notifications/presentation/cubit/notifications-cubit.dart';
 import 'package:education_app/src/profile/presentation/widgets/admin-button.dart';
 import 'package:education_app/src/profile/presentation/widgets/user-info-card.widget.dart';
 import 'package:flutter/material.dart';
@@ -94,19 +98,43 @@ class ProfileBody extends StatelessWidget {
               icon: IconlyLight.paper_upload,
               onPressed: () {
                 showModalBottomSheet<void>(
-                  context: context,
-                  backgroundColor: Colors.white,
-                  isScrollControlled: true,
-                  showDragHandle: true,
-                  elevation: 0,
-                  useSafeArea: true,
-                  builder: (_) => BlocProvider(
-                    create: (_) => getIt<CourseCubit>(),
-                    child: const AddCourseSheet(),
-                  ),
-                );
+                    context: context,
+                    backgroundColor: Colors.white,
+                    isScrollControlled: true,
+                    showDragHandle: true,
+                    elevation: 0,
+                    useSafeArea: true,
+                    builder: (_) => MultiBlocProvider(
+                          providers: [
+                            BlocProvider(create: (_) => getIt<CourseCubit>()),
+                            BlocProvider(
+                                create: (_) => getIt<NotificationsCubit>()),
+                          ],
+                          child: const AddCourseSheet(),
+                        ));
               },
-            )
+            ),
+            AdminButton(
+              label: 'Add Video',
+              icon: IconlyLight.video,
+              onPressed: () {
+                Navigator.pushNamed(context, AddVideoView.routeName);
+              },
+            ),
+            AdminButton(
+              label: 'Add Materials',
+              icon: IconlyLight.paper_download,
+              onPressed: () {
+                Navigator.pushNamed(context, AddResourcesView.routeName);
+              },
+            ),
+            AdminButton(
+              label: 'Add Exam',
+              icon: IconlyLight.document,
+              onPressed: () {
+                Navigator.pushNamed(context, AddExamsView.routeName);
+              },
+            ),
           ]
         ],
       );

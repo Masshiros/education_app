@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:education_app/core/errors/exceptions.dart';
 import 'package:education_app/core/utils/datasource-utils.dart';
 import 'package:education_app/src/notifications/data/datasources/notification.data-source.dart';
-import 'package:education_app/src/notifications/data/models/notification,models.dart';
+import 'package:education_app/src/notifications/data/models/notification.models.dart';
 import 'package:education_app/src/notifications/domain/entities/notification.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

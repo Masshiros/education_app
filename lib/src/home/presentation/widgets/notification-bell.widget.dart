@@ -63,8 +63,8 @@ class _NotificationBellState extends State<NotificationBell> {
               child: GestureDetector(
                 onTap: () {
                   context.push(
-                    BlocProvider(
-                      create: (_) => getIt<NotificationsCubit>(),
+                    BlocProvider.value(
+                      value: BlocProvider.of<NotificationsCubit>(context),
                       child: const NotificationsView(),
                     ),
                   );
@@ -79,6 +79,7 @@ class _NotificationBellState extends State<NotificationBell> {
                       fontSize: 8,
                     ),
                   ),
+                  child: const Icon(IconlyLight.notification),
                 ),
               ));
         }
