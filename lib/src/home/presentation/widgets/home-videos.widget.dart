@@ -1,9 +1,11 @@
 import 'package:education_app/core/common/views/loading-view.dart';
 import 'package:education_app/core/common/widgets/not-found-text.dart';
+import 'package:education_app/core/common/widgets/video-tile.dart';
 import 'package:education_app/core/extensions/context.extension.dart';
 import 'package:education_app/core/services/dependencies-container.dart';
 import 'package:education_app/core/utils/core-utils.dart';
 import 'package:education_app/src/course/features/videos/presentation/cubit/video-cubit.dart';
+import 'package:education_app/src/course/features/videos/presentation/views/course-videos.view.dart';
 import 'package:education_app/src/home/presentation/widgets/section-header.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,14 +56,18 @@ class _HomeVideosState extends State<HomeVideos> {
                 onSeeAll: () => context.push(
                   BlocProvider(
                     create: (_) => getIt<VideoCubit>(),
-                    // child: CourseVideosView(),
+                    child: CourseVideosView(context.courseOfTheDay!),
                   ),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              for (final video in state.videos.take(5)) const Placeholder(),
+              for (final video in state.videos.take(5))
+                VideoTile(
+                  video,
+                  tappable: true,
+                ),
             ],
           );
         }

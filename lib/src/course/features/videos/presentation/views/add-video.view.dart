@@ -69,6 +69,7 @@ class _AddVideoViewState extends State<AddVideoView> {
 
   Future<void> fetchVideo() async {
     if (urlController.text.trim().isEmpty) return;
+
     FocusManager.instance.primaryFocus?.unfocus();
     setState(() {
       getMoreDetails = false;

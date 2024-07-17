@@ -5,6 +5,7 @@ import 'package:education_app/core/extensions/context.extension.dart';
 import 'package:education_app/core/extensions/int.extension.dart';
 import 'package:education_app/core/global/media.dart';
 import 'package:education_app/src/course/domain/entities/course.entities.dart';
+import 'package:education_app/src/course/features/videos/presentation/views/course-videos.view.dart';
 import 'package:flutter/material.dart';
 
 class CourseDetailsScreen extends StatelessWidget {
@@ -61,7 +62,7 @@ class CourseDetailsScreen extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                     if (course.numberOfVideos > 0) ...[
+                    if (course.numberOfVideos > 0) ...[
                       const SizedBox(height: 10),
                       CourseInfoTile(
                         image: MediaRes.courseInfoVideo,
@@ -69,7 +70,7 @@ class CourseDetailsScreen extends StatelessWidget {
                         subtitle: 'Watch our tutorial '
                             'videos for ${course.title}',
                         onTap: () => Navigator.of(context).pushNamed(
-                          '/unknown-route',
+                          CourseVideosView.routeName,
                           arguments: course,
                         ),
                       ),
@@ -95,7 +96,7 @@ class CourseDetailsScreen extends StatelessWidget {
                             '${course.numberOfMaterials.estimate} materials '
                             'for ${course.title}',
                         onTap: () => Navigator.of(context).pushNamed(
-                          '/unknown-route',
+                          'unknown-route',
                           arguments: course,
                         ),
                       ),

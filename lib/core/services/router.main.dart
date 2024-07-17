@@ -98,6 +98,14 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         (_) => VideoPlayerView(videoURL: settings.arguments! as String),
         settings: settings,
       );
+    case CourseVideosView.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (_) => getIt<VideoCubit>(),
+          child: CourseVideosView(settings.arguments! as Course),
+        ),
+        settings: settings,
+      );
     default:
       return _pageBuilder((_) => const PageUnderConstruction(),
           settings: settings);

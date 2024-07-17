@@ -12,6 +12,7 @@ import 'package:education_app/src/course/features/resources/presentation/cubit/r
 import 'package:education_app/src/course/features/resources/presentation/views/add-resources.view.dart';
 import 'package:education_app/src/course/features/videos/presentation/cubit/video-cubit.dart';
 import 'package:education_app/src/course/features/videos/presentation/views/add-video.view.dart';
+import 'package:education_app/src/course/features/videos/presentation/views/course-videos.view.dart';
 import 'package:education_app/src/course/features/videos/presentation/views/video-player.views.dart';
 import 'package:education_app/src/course/presentation/cubit/course-cubit.dart';
 import 'package:education_app/src/course/presentation/views/course-details.view.dart';
