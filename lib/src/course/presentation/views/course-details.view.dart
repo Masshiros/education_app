@@ -5,6 +5,7 @@ import 'package:education_app/core/extensions/context.extension.dart';
 import 'package:education_app/core/extensions/int.extension.dart';
 import 'package:education_app/core/global/media.dart';
 import 'package:education_app/src/course/domain/entities/course.entities.dart';
+import 'package:education_app/src/course/features/resources/presentation/views/course-resources.view.dart';
 import 'package:education_app/src/course/features/videos/presentation/views/course-videos.view.dart';
 import 'package:flutter/material.dart';
 
@@ -96,7 +97,7 @@ class CourseDetailsScreen extends StatelessWidget {
                             '${course.numberOfMaterials.estimate} materials '
                             'for ${course.title}',
                         onTap: () => Navigator.of(context).pushNamed(
-                          'unknown-route',
+                          CourseResourcesView.routeName,
                           arguments: course,
                         ),
                       ),

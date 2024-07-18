@@ -106,6 +106,14 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         ),
         settings: settings,
       );
+      case CourseResourcesView.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (_) => getIt<ResourceCubit>(),
+          child: CourseResourcesView(settings.arguments! as Course),
+        ),
+        settings: settings,
+      );
     default:
       return _pageBuilder((_) => const PageUnderConstruction(),
           settings: settings);
