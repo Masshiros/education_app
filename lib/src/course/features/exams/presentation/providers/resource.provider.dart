@@ -43,7 +43,7 @@ class ResourceProvider extends ChangeNotifier {
     return fileExists;
   }
 
-  Future<File?> _downloadAndSaveFile() async {
+  Future<File?> downloadAndSaveFile() async {
     _loading = true;
     _downloading = true;
     notifyListeners();

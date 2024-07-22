@@ -3,11 +3,15 @@ import 'package:education_app/core/common/widgets/gradient-background.dart';
 import 'package:education_app/core/common/widgets/nested-back-button.dart';
 import 'package:education_app/core/common/widgets/not-found-text.dart';
 import 'package:education_app/core/global/media.dart';
+import 'package:education_app/core/services/dependencies-container.dart';
 import 'package:education_app/core/utils/core-utils.dart';
 import 'package:education_app/src/course/domain/entities/course.entities.dart';
+import 'package:education_app/src/course/features/exams/presentation/providers/resource.provider.dart';
 import 'package:education_app/src/course/features/resources/presentation/cubit/resource-cubit.dart';
+import 'package:education_app/src/course/features/resources/presentation/widgets/resource-tile.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 class CourseResourcesView extends StatefulWidget {
   const CourseResourcesView(this.course, {super.key});
@@ -68,7 +72,11 @@ class _CourseResourcesViewState extends State<CourseResourcesView> {
                     color: Color(0xFFE6E8EC),
                   ),
                   itemBuilder: (_, index) {
-                    return const Placeholder(fallbackHeight: 50);
+                    return ChangeNotifierProvider(
+                      create: (_) =>
+                          getIt<ResourceProvider>()..init(resources[index]),
+                      child: const ResourceTile(),
+                    );
                   },
                 ),
               );
