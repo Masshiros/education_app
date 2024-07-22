@@ -27,6 +27,7 @@ import 'package:education_app/src/course/features/exams/domain/usecases/submit-e
 import 'package:education_app/src/course/features/exams/domain/usecases/update-exam.usecase.dart';
 import 'package:education_app/src/course/features/exams/domain/usecases/upload-exam.usecase.dart';
 import 'package:education_app/src/course/features/exams/presentation/cubit/exam-cubit.dart';
+import 'package:education_app/src/course/features/exams/presentation/providers/resource.provider.dart';
 import 'package:education_app/src/course/features/resources/data/datasources/firebase.resource.data-source.dart';
 import 'package:education_app/src/course/features/resources/data/datasources/resource.data-source.dart';
 import 'package:education_app/src/course/features/resources/data/repositories/resource.repositories.dart';

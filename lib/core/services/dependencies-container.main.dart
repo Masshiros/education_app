@@ -136,7 +136,11 @@ Future<void> _initResource() async {
         () => GetResourcesUseCase(getIt<IResourceRepository>()))
     ..registerFactory<ResourceCubit>(() => ResourceCubit(
         addResource: getIt<AddResourceUseCase>(),
-        getResources: getIt<GetResourcesUseCase>()));
+        getResources: getIt<GetResourcesUseCase>()))
+    ..registerFactory<ResourceProvider>(() => ResourceProvider(
+          storage: getIt<FirebaseStorage>(),
+          prefs: getIt<SharedPreferences>(),
+        ));
 }
 
 Future<void> _initExam() async {
