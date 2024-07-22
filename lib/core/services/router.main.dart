@@ -93,6 +93,27 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         ),
         settings: settings,
       );
+      case ExamDetailsView.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (context) => getIt<ExamCubit>(),
+          child: ExamDetailsView(settings.arguments! as Exam),
+        ),
+        settings: settings,
+      );
+    case ExamView.routeName:
+      return _pageBuilder(
+        (_) => BlocProvider(
+          create: (context) => getIt<ExamCubit>(),
+          child: ChangeNotifierProvider(
+            create: (context) => ExamProvider(
+              exam: settings.arguments! as Exam,
+            ),
+            child: const ExamView(),
+          ),
+        ),
+        settings: settings,
+      );
     case VideoPlayerView.routeName:
       return _pageBuilder(
         (_) => VideoPlayerView(videoURL: settings.arguments! as String),

@@ -116,7 +116,7 @@ class _ExamDetailsViewState extends State<ExamDetailsView> {
                             const SizedBox(height: 10),
                             CourseInfoTile(
                               image: MediaRes.examQuestions,
-                              title: '${completeExam.questions?.length} '
+                              title: '${completeExam.questions?.length} ' 
                                   'Questions',
                               subtitle: 'This test consists of '
                                   '${completeExam.questions?.length} questions',
