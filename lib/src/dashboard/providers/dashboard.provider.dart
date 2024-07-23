@@ -6,6 +6,8 @@ import 'package:education_app/src/course/presentation/cubit/course-cubit.dart';
 import 'package:education_app/src/home/presentation/views/home.view.dart';
 import 'package:education_app/src/notifications/presentation/cubit/notifications-cubit.dart';
 import 'package:education_app/src/profile/presentation/views/profile.view.dart';
+import 'package:education_app/src/quick-access/presentation/providers/quick-access.provider.dart';
+import 'package:education_app/src/quick-access/presentation/views/quick-access.view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -39,7 +41,13 @@ class DashBoardProvider extends ChangeNotifier {
     ChangeNotifierProvider(
       create: (_) => TabNavigator(
         TabItem(
-          child: const Placeholder(),
+          child: BlocProvider(
+            create: (context) => getIt<CourseCubit>(),
+            child: ChangeNotifierProvider(
+              create: (_) => QuickAccessProvider(),
+              child: const QuickAccessView(),
+            ),
+          ),
         ),
       ),
       child: const PersistentView(),
