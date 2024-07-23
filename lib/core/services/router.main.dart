@@ -93,7 +93,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         ),
         settings: settings,
       );
-      case ExamDetailsView.routeName:
+    case ExamDetailsView.routeName:
       return _pageBuilder(
         (_) => BlocProvider(
           create: (context) => getIt<ExamCubit>(),
@@ -127,7 +127,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         ),
         settings: settings,
       );
-      case CourseResourcesView.routeName:
+    case CourseResourcesView.routeName:
       return _pageBuilder(
         (_) => BlocProvider(
           create: (_) => getIt<ResourceCubit>(),
@@ -135,6 +135,13 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         ),
         settings: settings,
       );
+    case CourseExamsView.routeName:
+      return _pageBuilder(
+          (_) => BlocProvider(
+                create: (_) => getIt<ExamCubit>(),
+                child: CourseExamsView(settings.arguments! as Course),
+              ),
+          settings: settings);
     default:
       return _pageBuilder((_) => const PageUnderConstruction(),
           settings: settings);
