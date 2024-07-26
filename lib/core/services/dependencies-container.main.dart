@@ -10,6 +10,7 @@ Future<void> init() async {
   await _initResource();
   await _initExam();
   await _initNotification();
+  await _initChat();
 }
 
 Future<void> _initOnBoarding() async {
@@ -204,5 +205,37 @@ Future<void> _initNotification() async {
           getNotifications: getIt<GetNotificationsUseCase>(),
           markAsRead: getIt<MarkAsReadUseCase>(),
           sendNotification: getIt<SendNotificationUseCase>(),
+        ));
+}
+
+Future<void> _initChat() async {
+  getIt
+    ..registerLazySingleton<ChatDataSource>(
+      () => ChatFirebaseDataSource(
+        auth: getIt<FirebaseAuth>(),
+        firestore: getIt<FirebaseFirestore>(),
+      ),
+    )
+    ..registerLazySingleton<IChatRepositories>(
+        () => ChatRepository(getIt<ChatDataSource>()))
+    ..registerLazySingleton<GetGroupsUseCase>(
+        () => GetGroupsUseCase(getIt<IChatRepositories>()))
+    ..registerLazySingleton<GetMessagesUseCase>(
+        () => GetMessagesUseCase(getIt<IChatRepositories>()))
+    ..registerLazySingleton<GetUserByIdUseCase>(
+        () => GetUserByIdUseCase(getIt<IChatRepositories>()))
+    ..registerLazySingleton<JoinGroupUseCase>(
+        () => JoinGroupUseCase(getIt<IChatRepositories>()))
+    ..registerLazySingleton<LeaveGroupUseCase>(
+        () => LeaveGroupUseCase(getIt<IChatRepositories>()))
+    ..registerLazySingleton<SendMessageUseCase>(
+        () => SendMessageUseCase(getIt<IChatRepositories>()))
+    ..registerFactory<ChatCubit>(() => ChatCubit(
+          getGroups: getIt<GetGroupsUseCase>(),
+          getMessages: getIt<GetMessagesUseCase>(),
+          getUserById: getIt<GetUserByIdUseCase>(),
+          joinGroup: getIt<JoinGroupUseCase>(),
+          leaveGroup: getIt<LeaveGroupUseCase>(),
+          sendMessage: getIt<SendMessageUseCase>(),
         ));
 }
